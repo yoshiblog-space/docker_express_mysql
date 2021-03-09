@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize('database', 'root', 'root', {
+const sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_ROOT_USER, process.env.MYSQL_ROOT_PASSWORD, {
   host: 'db',
   dialect: 'mysql',
 
@@ -7,12 +7,12 @@ const sequelize = new Sequelize('database', 'root', 'root', {
 })
 const Model = Sequelize.Model;
 //check db authenticate
-try {
-  sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
+// try {
+//   sequelize.authenticate();
+//   console.log('Connection has been established successfully.');
+// } catch (error) {
+//   console.error('Unable to connect to the database:', error);
+// }
 
 const users = sequelize.define('users', {
   id: {
