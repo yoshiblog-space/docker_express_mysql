@@ -2,17 +2,17 @@ version: '3'
  
 services:
   db:
-    image: mysql
+    build: './docker/'
     container_name: mysqldb
     env_file: 
     - ./app.env
     volumes:
-    - ./docker/db/data:/var/lib/mysql
+    - 'dbdata:/var/lib/mysql'
     ports:
     - 3306:3306
  
   app:
-    build: '.'
+    build: './myapp/'
     container_name: expressapp
     depends_on:
       - db
@@ -24,3 +24,5 @@ services:
     ports:
       - '3000:3000'
     command: npm start
+volumes:
+  dbdata:
